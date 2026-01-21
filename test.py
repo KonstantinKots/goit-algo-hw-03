@@ -1,5 +1,5 @@
 
-from datetime import datetime                   #імопртуємо datetime
+from datetime import datetime                 
 
 date_str = input("Enter the date (year.month.day): ")     #введення данних користувачем
 today = datetime.now().date                               #отримуємо сьогодняшню дату без часу
@@ -14,5 +14,6 @@ def get_days_from_today(date):                            #створюємо ф
         
 
 result = get_days_from_today(date_str)   #викликаємо функцію
-print(result)                            #виводимо результат роботи функції
+print(result)                            
     
+

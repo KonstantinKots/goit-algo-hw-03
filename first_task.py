@@ -20,6 +20,7 @@ def get_days_from_today(date: str) -> int:
         delta_days = today - convert_date
         return delta_days.days                                  
     except ValueError:
+        #обробка невірного формату
         print("Enter, please, the date in the format: YYYY.MM.DD")
         return None
 #викликаємо функцію    

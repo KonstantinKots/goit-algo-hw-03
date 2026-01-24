@@ -1,23 +1,35 @@
 import random
-'''
-Функція для генерації набору унікальних випадкових чисел
 
-'''
-num_min = int(input("Введіть найменьше число діапазону:"))
-num_max = int(input("Введіть найбільше число діапазону:"))
-quant = int(input("Введіть кількість чисел, які потрібно вибрати:"))
+def get_numbers_ticket(min_number: int, max_number: int, quantity: int) -> int:
+    '''Функція для генерації набору унікальних випадкових чисел у заданому диапазоні
 
-def get_numbers_ticket(min_number: int, max_number: int, quantity: int) -> list:
+    :param date: Мінімальне та максимальне число діапазону, число вибірки у межах діапазону
+    :type date: int
+    :return: список з випадкових унікальних чисел
+    :rtype: list
+
+    '''
+    #первірка вхідних данних
+    if min_number < 1:
+        print(f"Число {min_number} менше 1, введіть число >= 1.")
+    elif max_number > 1000:
+        print(f"Число {max_number} більше допустимого, введіть число менше 1000.")
+    elif min_number > quantity or quantity > max_number:
+        print(f"Число {quantity} не в межах чисел {min_number} та {max_number}.\
+              \n Введіть корректне число.")
+
     #створення списку унікальних випадкових чисел
     try:
-        if num_min >=1 and num_max <=1000 and num_min < quant < num_max:
-            num_list = random.sample(range(min_number, max_number), quantity)
+        if min_number >=1 and max_number <=1000 and quantity < max_number:
+            num_list = random.sample(range(min_number, max_number+1), quantity)
             num_list.sort()
             return num_list
     except ValueError:
-        if num_min < 1 and num_max <=1000 and num_min < quant < num_max
-        print(f"Число {num_min} менше 1, введіть корректне число")
+        return None
 
-
-lottery_numbers = get_numbers_ticket(num_min, num_max, quant)
-print("Ваші лотерейні числа:", lottery_numbers)
+if __name__ == "__main__":
+    min_num = int(input("Введіть найменьше число діапазону:"))
+    max_num = int(input("Введіть найбільше число діапазону:"))
+    quant = int(input("Введіть кількість чисел, які потрібно вибрати:"))
+    lottery_numbers = get_numbers_ticket(min_num, max_num, quant)
+    print("Ваші лотерейні числа:", lottery_numbers)
